@@ -7,10 +7,36 @@
 </head>
 <body>
     <a href="Fotos.htm">
-        <button type="button">VER FOTOS SUBIDAS</button>
+        <button type="button">Ir a la página 2</button>
     </a>
     
-    <input type="file" accept="image/*" capture="camera">
+    <!-- <input type="file" accept="image/*" capture="camera"> -->
+     
+    <input type="file" accept="image/*" capture="camera" id="foto-input">
+
+    <div id="preview-container">
+        <p>Tu captura aparecerá aquí:</p>
+        <img id="foto-preview" style="max-width: 100%; display: none;">
+    </div>
 
 </body>
-</html>
+
+<script>
+    const inputFoto = document.getElementById('foto-input');
+    const previewFoto = document.getElementById('foto-preview');
+
+    inputFoto.addEventListener('change', function() {
+    const archivo = this.files[0]; // Obtenemos el archivo seleccionado
+
+        if (archivo) {
+            // Creamos una URL temporal para el archivo
+            const urlImagen = URL.createObjectURL(archivo);
+    
+            // La asignamos al src de la imagen y la mostramos
+            previewFoto.src = urlImagen;
+            previewFoto.style.display = 'block';
+        }
+    });
+</script>
+
+</html> 
